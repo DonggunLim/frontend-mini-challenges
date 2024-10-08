@@ -1,0 +1,24 @@
+#toast {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  background: hsl(187, 24%, 22%);
+  padding: 32px;
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  visibility: hidden;
+}
+
+#toast > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
