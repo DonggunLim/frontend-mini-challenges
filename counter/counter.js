@@ -19,6 +19,17 @@ $resetBtn.addEventListener("click", () => {
   $counterInput.value = 1;
 });
 
+$counterInput.addEventListener("change", () => {
+  // 숫자가아닌 문자가 들어올때 값을 1로 변경.
+  if (Number.isNaN($counterInput.valueAsNumber)) {
+    $counterInput.value = 1;
+  }
+  // 값이 음수일때 1로 변경
+  else if ($counterInput.valueAsNumber < 0) {
+    $counterInput.value = 1;
+  }
+});
+
 function calculateDisplayNumber({ target: { className } }) {
   return className === "plus-btn"
     ? Number($display.innerText) + Number($counterInput.value)
