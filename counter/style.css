@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#counter {
+  padding: 16px;
+  border: 1px sold gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.display-number {
+  font-size: 100px;
+  font-weight: bolder;
+  text-align: center;
+  padding: 16px;
+}
+
+.counter-controller {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.counter-controller .count-btn input {
+  padding: 8px;
+}
+
+.counter-controller .btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.counter-controller .btn-group button {
+  flex-grow: 1;
+  padding: 12px;
+}
+
+.counter-controller .reset {
+  padding: 12px;
+}
