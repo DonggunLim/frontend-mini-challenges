@@ -1,0 +1,71 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container > p {
+  font-size: 16px;
+  padding: 16px 0;
+}
+
+#container .display-container {
+  height: 200px;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+#container .display-container {
+  position: relative;
+}
+
+#container .display-container .life {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: red;
+}
+
+#container .display-container .current-guess {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+#container .display-container .prev-nums {
+  min-height: 20px;
+}
+
+#container .control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#container .control-group .number-input {
+  padding: 12px;
+  font-size: 16px;
+}
+
+#container .control-group button {
+  padding: 12px;
+  font-size: 16px;
+}
