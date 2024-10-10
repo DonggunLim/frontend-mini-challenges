@@ -4,7 +4,6 @@ const $userInput = document.querySelector("#userInput");
 let userString = "";
 
 $userInput.addEventListener("input", (e) => {
-  if (!e.target.value.length) return;
   userString = e.target.value;
   convertToLowerCase(userString);
   convertToUpperCase(userString);
