@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>string-transformer</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <form action="#" id="form">
+      <input
+        type="text"
+        autocomplete="off"
+        placeholder="Enter the sentence with spaces (alpahanumaric)"
+        value="this is a normal sentence to transform"
+        id="userInput"
+      />
+      <div class="output-container">
+        <div class="output-item">
+          <label for="lower-case">Lower Case</label>
+          <output id="lower-case" for="userInput"
+            >this is a normal sentence to transform</output
+          >
+        </div>
+        <div class="output-item">
+          <label for="upper-case">Upper Case</label>
+          <output id="upper-case" for="userInput"
+            >THIS IS A NORMAL SENTENCE TO TRANSFORM</output
+          >
+        </div>
+        <div class="output-item">
+          <label for="camel-case">Camel Case</label>
+          <output id="camel-case" for="userInput"
+            >thisIsANormalSentenceToTransform</output
+          >
+        </div>
+        <div class="output-item">
+          <label for="pascal-case">Pascal Case</label>
+          <output id="pascal-case" for="userInput"
+            >ThisIsANormalSentenceToTransform</output
+          >
+        </div>
+        <div class="output-item">
+          <label for="snake-case">Snake Case</label>
+          <output id="snake-case" for="userInput"
+            >this_is_a_normal_sentence_to_transform</output
+          >
+        </div>
+        <div class="output-item">
+          <label for="kebab-case">Kebab Case</label>
+          <output id="kebab-case" for="userInput"
+            >this-is-a-normal-sentence-to-transform</output
+          >
+        </div>
+        <div class="output-item">
+          <label for="trim">Trim</label>
+          <output id="trim" for="userInput"
+            >thisisanormalsentencetotransform</output
+          >
+        </div>
+      </div>
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>
