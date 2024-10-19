@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#wrapper {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 25rem;
+  gap: 20px;
+}
+
+#input-container {
+  width: 100%;
+}
+
+#password {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.indicators {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #d3d3d3;
+}
+
+.indicators .true {
+  color: green;
+}
+
+.progress-container {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  outline: 1px solid #ccc;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: orange;
+  transition: all 0.25s ease-in-out;
+}

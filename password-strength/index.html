@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>passsword-strength</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="input-container">
+        <input
+          type="text"
+          id="password"
+          min="8"
+          max="32"
+          autofocus
+          autocomplete="off"
+          placeholder="Enter the password"
+        />
+      </div>
+      <div class="indicators">
+        <span id="lowerCase" class="false">Lowercase</span>
+        <span id="upperCase" class="false">Uppercase</span>
+        <span id="number" class="false">Number</span>
+        <span id="symbols" class="false">Symbols</span>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p>Password has <strong id="chars">0</strong> chars</p>
+      <p>Your password is <strong id="strength">Weak</strong></p>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
