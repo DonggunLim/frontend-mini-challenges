@@ -3,119 +3,83 @@ const $chars = document.querySelector("#chars");
 const $strength = document.querySelector("#strength");
 const $indicators = document.querySelectorAll(".indicators > span");
 const $progressBar = document.querySelector(".progress-bar");
+const STRENGTH_INDEX = {
+  Weak: {
+    strength: "Weak",
+    width: "20%",
+    color: "red",
+  },
+  Medium: {
+    strength: "Medium",
+    width: "50%",
+    color: "orange",
+  },
+  Strong: {
+    strength: "Strong",
+    width: "100%",
+    color: "green",
+  },
+  Default: {
+    strength: "",
+    width: "0%",
+    color: "red",
+  },
+};
 
 $passwordInput.addEventListener("input", (e) => {
   const password = e.target.value;
-  checkStrength(password, password.length);
+  const { conditions } = getIndicatorConditions(password, password.length);
+  const strengthData = getStrength(conditions, password.length);
+  updateUI(conditions, password.length, strengthData);
 });
 
-const checkStrength = (password, length) => {
-  let hasLowerCase = /[a-z]/.test(password);
-  let hasUpperCase = /[A-Z]/.test(password);
-  let hasNumber = /[0-9]/.test(password);
-  let hasSymbols = /[^(0-9a-zA-Z)]/.test(password);
-  const satisfiedCondition =
-    +hasLowerCase + +hasUpperCase + +hasNumber + +hasSymbols; // 단항 연산자(+) boolean로 숫자로 형변환
-
-  // length 길이 표시
+const updateUI = (indicatorConditions, length, strengthData) => {
   $chars.textContent = length;
+  $indicators.forEach(
+    ($indicator, index) => ($indicator.className = indicatorConditions[index])
+  );
+  $strength.textContent = strengthData.strength;
+  $progressBar.style.width = strengthData.width;
+  $progressBar.style.background = strengthData.color;
+};
 
-  // 조건의 변화가 있을때 indicator 표시
-  if (hasLowerCase) {
-    $indicators[0].classList.remove("false");
-    $indicators[0].classList.add("true");
-  } else if (!hasLowerCase) {
-    $indicators[0].classList.remove("true");
-    $indicators[0].classList.add("false");
-  }
-  if (hasUpperCase) {
-    $indicators[1].classList.remove("false");
-    $indicators[1].classList.add("true");
-  } else if (!hasUpperCase) {
-    $indicators[1].classList.remove("true");
-    $indicators[1].classList.add("false");
-  }
-  if (hasNumber) {
-    $indicators[2].classList.remove("false");
-    $indicators[2].classList.add("true");
-  } else if (!hasNumber) {
-    $indicators[2].classList.remove("true");
-    $indicators[2].classList.add("false");
-  }
-  if (hasSymbols) {
-    $indicators[3].classList.remove("false");
-    $indicators[3].classList.add("true");
-  } else if (!hasSymbols) {
-    $indicators[3].classList.remove("true");
-    $indicators[3].classList.add("false");
+const getIndicatorConditions = (password) => {
+  const [hasLowerCase, hasUpperCase, hasNumber, hasSymbols] = [
+    /[a-z]/.test(password),
+    /[A-Z]/.test(password),
+    /[0-9]/.test(password),
+    /[^(0-9a-zA-Z)]/.test(password),
+  ];
+
+  return { conditions: [hasLowerCase, hasUpperCase, hasNumber, hasSymbols] };
+};
+
+const getStrength = (conditions, passwordLength) => {
+  const satisfiedConditionCount = conditions.filter(Boolean).length;
+  if (!satisfiedConditionCount) return STRENGTH_INDEX["Default"];
+  if (satisfiedConditionCount === 1) {
+    return passwordLength >= 15
+      ? STRENGTH_INDEX["Medium"]
+      : STRENGTH_INDEX["Weak"];
   }
 
-  // strength 문자, progressbar 표시
-  switch (satisfiedCondition) {
-    case 1: {
-      if (length <= 14) {
-        $strength.textContent = "Weak";
-        $progressBar.style.width = "25%";
-        $progressBar.style.background = "red";
-      }
-      if (length >= 15) {
-        $strength.textContent = "Medium";
-        $progressBar.style.width = "50%";
-        $progressBar.style.background = "orange";
-      }
-      break;
-    }
-    case 2: {
-      if (length <= 11) {
-        $strength.textContent = "Weak";
-        $progressBar.style.width = "25%";
-        $progressBar.style.background = "red";
-      }
-      if (length >= 12) {
-        $strength.textContent = "Medium";
-        $progressBar.style.width = "50%";
-        $progressBar.style.background = "orange";
-      }
-      break;
-    }
-    case 3: {
-      if (length <= 8) {
-        $strength.textContent = "Weak";
-        $progressBar.style.width = "25%";
-        $progressBar.style.background = "red";
-      }
-      if (length >= 9 && length < 17) {
-        $strength.textContent = "Medium";
-        $progressBar.style.width = "50%";
-        $progressBar.style.background = "orange";
-      }
-      if (length >= 18) {
-        $strength.textContent = "Strong";
-        $progressBar.style.width = "100%";
-        $progressBar.style.background = "green";
-      }
-      break;
-    }
-    case 4: {
-      if (length <= 5) {
-        $strength.textContent = "Weak";
-        $progressBar.style.width = "20%";
-        $progressBar.style.background = "red";
-      }
-      if (length >= 6 && length <= 17) {
-        $strength.textContent = "Medium";
-        $progressBar.style.width = "50%";
-        $progressBar.style.background = "orange";
-      }
-      if (length >= 18) {
-        $strength.textContent = "Strong";
-        $progressBar.style.width = "100%";
-        $progressBar.style.background = "green";
-      }
-      break;
-    }
-    default: {
-      $progressBar.style.width = "0%";
-    }
+  if (satisfiedConditionCount === 2) {
+    return passwordLength >= 12
+      ? STRENGTH_INDEX["Medium"]
+      : STRENGTH_INDEX["Weak"];
+  }
+
+  if (satisfiedConditionCount === 3) {
+    if (passwordLength >= 18) return STRENGTH_INDEX["Strong"];
+    return passwordLength >= 9
+      ? STRENGTH_INDEX["Medium"]
+      : STRENGTH_INDEX["Weak"];
+  }
+
+  if (satisfiedConditionCount === 4) {
+    if (passwordLength >= 18) return STRENGTH_INDEX["Strong"];
+    return passwordLength >= 6
+      ? STRENGTH_INDEX["Medium"]
+      : STRENGTH_INDEX["Weak"];
   }
 };
