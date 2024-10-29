@@ -1,0 +1,80 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 50%;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+/* form */
+
+form {
+  width: 100%;
+}
+/* user input */
+
+form > input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+/* chips-display */
+
+.chips-display {
+  width: 100%;
+  padding-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 8px;
+}
+
+/* chip item */
+
+.chip-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background-color: #eee;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+}
+
+/* chip item title */
+
+.chip-item > span {
+  font-size: 16px;
+}
+
+/* chip item delete */
+
+.remove-button {
+  all: unset;
+  display: none;
+  color: red;
+  cursor: pointer;
+}
+
+.remove-button::before {
+  content: "x";
+  color: red;
+}
